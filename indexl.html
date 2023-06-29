@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Johnson Algorithm</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h2>Johnson Algorithm</h2>
+
+  <label for="matrix-size">Enter matrix size  :</label>
+  <input type="number" id="matrix-size" placeholder="Enter size">
+  <button onclick="createTable()">Create Table</button>
+  
+  <div id="table-container"></div>
+
+  <script>
+    function createTable() {
+      var size = parseInt(document.getElementById('matrix-size').value);
+      var container = document.getElementById('table-container');
+
+      // Clear previous table
+      container.innerHTML = '';
+
+      // Create the table element
+      var table = document.createElement('table');
+      table.id = 'matrix-input';
+
+      // Create the table header (top row)
+      var thead = document.createElement('thead');
+      var headerRow = document.createElement('tr');
+
+      // Add an empty cell as the first header column
+      headerRow.appendChild(document.createElement('th'));
+
+      // Create header columns based on the size
+      for (var i = 1; i <= size; i++) {
+        var headerCol = document.createElement('th');
+        headerCol.textContent = 'Vertex ' + i;
+        headerRow.appendChild(headerCol);
+      }
+
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      // Create the table body (rows and cells)
+      var tbody = document.createElement('tbody');
+      
+      for (var i = 1; i <= size; i++) {
+        var row = document.createElement('tr');
+        
+        // Create the first cell of each row as a header column
+        var rowHeader = document.createElement('td');
+        rowHeader.textContent = 'Vertex ' + i;
+        row.appendChild(rowHeader);
+        
+        // Create the remaining cells (input fields) for each row
+        for (var j = 1; j <= size; j++) {
+          var cell = document.createElement('td');
+          var input = document.createElement('input');
+          input.type = 'number';
+          input.placeholder = 'Enter w';
+          cell.appendChild(input);
+          row.appendChild(cell);
+         
+        }
+        
+        tbody.appendChild(row);
+      }
+      
+      table.appendChild(tbody);
+
+      // Append the table to the container
+      container.appendChild(table);
+    }
+  </script>
+
+
+
+  <div class="flex-container">
+    <div id="input-container">
+      <br>
+      To input inf in matrix use 9999
+      <button onclick="runJohnsonAlgorithm()">Run Algorithm</button>
+    </div>
+
+    <div id="graph-container">
+      <h3>Input Graph Visualization:</h3>
+      <svg id="graph-svg" width="300" height="200"></svg>
+    </div>
+  </div>
+
+  <h3>Result:</h3>
+  <div id="result-container"></div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
