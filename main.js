@@ -1,5 +1,5 @@
 const INFINITY = Number.POSITIVE_INFINITY;
-
+//
 function runJohnsonAlgorithm() {
   // Read input matrix from HTML table
   const table = document.getElementById('matrix-input');
